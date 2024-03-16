@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="material_black">#495963</color>
+    <color name="app_blue">#068FFF</color>
+    <color name="first_color_gradient">#00E0FF</color>
+    <color name="second_color_gradient">#0C41FF</color>
+    <color name="background">#F7F9FD</color>
+    <color name="default_icon_color">#757575</color>
+
+    <color name="text_color1">#B1AFAF</color>
+    <color name="text_color2">#A2A2A2</color>
+</resources>

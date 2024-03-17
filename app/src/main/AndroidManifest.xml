@@ -10,8 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pawsitive"
+        android:theme="@style/Base.Theme.Pawsitive"
         tools:targetApi="31">
+        <activity
+            android:name=".main_files.activities.Authentication"
+            android:exported="false" />
         <activity
             android:name=".main_files.activities.MainActivity"
             android:exported="true">

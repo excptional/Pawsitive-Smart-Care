@@ -3,16 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_navigation"
-    app:startDestination="@id/nav_log_in">
+    app:startDestination="@id/nav_sign_in">
 
     <fragment
-        android:id="@+id/nav_log_in"
-        android:name="com.bp.attendease.main_files.fragments.LogIn"
-        tools:layout="@layout/fragment_log_in" />
+        android:id="@+id/nav_sign_in"
+        android:name="com.by.pawsitive.main_files.fragments.SignIn"
+        tools:layout="@layout/fragment_sign_in" />
+
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.by.pawsitive.main_files.fragments.Register"
+        tools:layout="@layout/fragment_register" />
 
     <fragment
         android:id="@+id/nav_otp"
-        android:name="com.bp.attendease.main_files.fragments.OTP"
-        tools:layout="@layout/fragment_o_t_p" />
+        android:name="com.by.pawsitive.main_files.fragments.OTPVerification"
+        tools:layout="@layout/fragment_o_t_p_verification" />
 
 </navigation>

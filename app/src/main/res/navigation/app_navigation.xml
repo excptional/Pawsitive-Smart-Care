@@ -2,13 +2,63 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/nav_home_teacher"
+    app:startDestination="@id/nav_home"
     android:id="@+id/app_navigation">
 
     <fragment
-        android:id="@+id/nav_home_teacher"
+        android:id="@+id/nav_home"
         android:name="com.by.pawsitive.main_files.fragments.Home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_feed"
+        android:name="com.by.pawsitive.main_files.fragments.Feed"
+        tools:layout="@layout/fragment_feed" />
+
+    <fragment
+        android:id="@+id/nav_track"
+        android:name="com.by.pawsitive.main_files.fragments.Track"
+        tools:layout="@layout/fragment_track" />
+
+    <fragment
+        android:id="@+id/nav_heartbeat_monitor"
+        android:name="com.by.pawsitive.main_files.fragments.HeartBeatMonitor"
+        tools:layout="@layout/fragment_heart_beat_monitor" />
+
+    <fragment
+        android:id="@+id/nav_training_centers"
+        android:name="com.by.pawsitive.main_files.fragments.TrainingCenter"
+        tools:layout="@layout/fragment_training_center" />
+
+    <fragment
+        android:id="@+id/nav_grooming_centers"
+        android:name="com.by.pawsitive.main_files.fragments.GroomingCenter"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_kennels"
+        android:name="com.by.pawsitive.main_files.fragments.Kennels"
+        tools:layout="@layout/fragment_kennels" />
+
+    <fragment
+        android:id="@+id/nav_hospitals"
+        android:name="com.by.pawsitive.main_files.fragments.Hospitals"
+        tools:layout="@layout/fragment_hospitals" />
+
+    <fragment
+        android:id="@+id/nav_about_us"
+        android:name="com.by.pawsitive.main_files.fragments.AboutUs"
+        tools:layout="@layout/fragment_about_us" />
+
+    <fragment
+        android:id="@+id/nav_connect_us"
+        android:name="com.by.pawsitive.main_files.fragments.ConnectUs"
+        tools:layout="@layout/fragment_connect_us" />
+
+    <fragment
+        android:id="@+id/nav_future_scope"
+        android:name="com.by.pawsitive.main_files.fragments.FutureScope"
+        tools:layout="@layout/fragment_future_scope" />
 
 
 </navigation>

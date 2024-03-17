@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/nav_grooming_centers"
         android:name="com.by.pawsitive.main_files.fragments.GroomingCenter"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_grooming_center" />
 
     <fragment
         android:id="@+id/nav_kennels"

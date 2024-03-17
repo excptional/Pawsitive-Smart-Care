@@ -26,7 +26,7 @@
             android:icon="@drawable/sports_gymnastics"
             android:title="Training Centers" />
         <item
-            android:id="@+id/grooming_centers"
+            android:id="@+id/nav_grooming_centers"
             android:icon="@drawable/grass"
             android:title="Grooming Centers" />
         <item

@@ -12,8 +12,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.by.pawsitive.db.viewmodels.PetDataViewModel
 import com.by.pawsitive.R
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -21,7 +22,6 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import pl.droidsonroids.gif.GifImageView
-import java.util.UUID
 import java.util.concurrent.TimeUnit
 
 class Register2 : Fragment() {
@@ -37,8 +37,7 @@ class Register2 : Fragment() {
     private lateinit var loader: GifImageView
 
     private var isAllRight = true
-    private var verificationId: String? = null
-
+    private lateinit var petDataViewModel: PetDataViewModel
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     override fun onCreateView(
@@ -47,9 +46,14 @@ class Register2 : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_register2, container, false)
 
+        petDataViewModel = ViewModelProvider(requireActivity()).get(PetDataViewModel::class.java)
+
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 signInWithPhoneAuthCredential(credential)
+
+                whiteView.visibility = View.GONE
+                loader.visibility = View.GONE
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
@@ -64,17 +68,12 @@ class Register2 : Fragment() {
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
                 super.onCodeSent(verificationId, token)
-                this@Register2.verificationId = verificationId
                 val bundle = Bundle().apply {
                     putString("verificationId", verificationId)
                 }
-                findNavController().navigate(R.id.nav_otp,bundle)
+                findNavController().navigate(R.id.nav_otp, bundle)
             }
-
         }
-
-        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
-        val uid = sharedPref.getString("uid", null)
 
         backBtn = view.findViewById(R.id.back_btn_register2)
         registerBtn = view.findViewById(R.id.btn_register_register2)
@@ -86,62 +85,47 @@ class Register2 : Fragment() {
         whiteView = view.findViewById(R.id.whiteView_register2)
         loader = view.findViewById(R.id.loader_register2)
 
-        backBtn.setOnClickListener{
-            val navController = view.findNavController()
-            navController.navigate(R.id.register1)
+        backBtn.setOnClickListener {
+            findNavController().navigate(R.id.register1)
         }
 
         nameET.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                if (nameET.text!!.isEmpty()) {
-                    nameET.hint = "Enter your name"
+                if (nameET.text.isNullOrEmpty()) {
+                    nameET.error = "Enter your name"
                 }
-            } else {
-                nameET.hint = null
             }
         }
 
         phoneNumberET.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                if (phoneNumberET.text!!.isEmpty()) {
-                    phoneNumberET.hint = "Enter your phone number"
+                if (phoneNumberET.text.isNullOrEmpty()) {
+                    phoneNumberET.error = "Enter your phone number"
                 }
-//                else if (phoneNumberET.text!!.length != 10) {
-//                    phoneNumberET.error = "Phone number must be 10 digits"
-//                    isAllRight = false
-//                }
-            } else {
-                phoneNumberET.hint = null
             }
         }
 
         cityET.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                if (cityET.text!!.isEmpty()) {
-                    cityET.hint = "Enter your city"
+                if (cityET.text.isNullOrEmpty()) {
+                    cityET.error = "Enter your city"
                 }
-            } else {
-                cityET.hint = null
             }
         }
 
         stateET.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                if (stateET.text!!.isEmpty()) {
-                    stateET.hint = "Enter your state"
+                if (stateET.text.isNullOrEmpty()) {
+                    stateET.error = "Enter your state"
                 }
-            } else {
-                stateET.hint = null
             }
         }
 
         pinCodeET.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                if (pinCodeET.text!!.isEmpty()) {
-                    pinCodeET.hint = "Enter your pin code"
+                if (pinCodeET.text.isNullOrEmpty()) {
+                    pinCodeET.error = "Enter your pin code"
                 }
-            } else {
-                pinCodeET.hint = null
             }
         }
 
@@ -157,84 +141,106 @@ class Register2 : Fragment() {
                     stateET.isEnabled = false
                     pinCodeET.isEnabled = false
 
-                    val name = nameET.text.toString()
-                    val phoneNumber = phoneNumberET.text.toString()
-                    val city = cityET.text.toString()
-                    val state = stateET.text.toString()
-                    val pinCode = pinCodeET.text.toString()
-
-                    val db = FirebaseFirestore.getInstance()
-
-                    val owner = hashMapOf(
-                        "name" to name,
-                        "phoneNumber" to phoneNumber,
-                        "city" to city,
-                        "state" to state,
-                        "pinCode" to pinCode
-                    )
-
-                    if (uid != null) {
-                        db.collection("users").document(uid).collection("owner")
-                            .add(owner)
-                            .addOnSuccessListener { documentReference ->
-                                val completePhoneNumber = "+91$phoneNumber"
-                                PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                                    completePhoneNumber,
-                                    60,
-                                    TimeUnit.SECONDS,
-                                    requireActivity(),
-                                    callbacks
-                                )
-                            }
-                            .addOnFailureListener { e ->
-                                Toast.makeText(requireContext(), "Failed to add owner: $e", Toast.LENGTH_SHORT).show()
-                                resetViews()
-                            }
-                    }
-                } else {
-                    Toast.makeText(requireContext(), "Something went wrong!\nCheck your internet connection", Toast.LENGTH_SHORT).show()
-                    resetViews()
+                    sendUserDataToFirestore()
                 }
             }
         }
 
         return view
-
     }
 
+    private fun sendUserDataToFirestore() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid != null) {
+            val db = FirebaseFirestore.getInstance()
+
+            val name = nameET.text.toString()
+            val phoneNumber = phoneNumberET.text.toString()
+            val city = cityET.text.toString()
+            val state = stateET.text.toString()
+            val pinCode = pinCodeET.text.toString()
+
+            val owner = hashMapOf(
+                "name" to name,
+                "phoneNumber" to phoneNumber,
+                "city" to city,
+                "state" to state,
+                "pinCode" to pinCode
+            )
+
+            val petName = petDataViewModel.petName
+            val species = petDataViewModel.species
+            val breed = petDataViewModel.breed
+            val color = petDataViewModel.color
+            val age = petDataViewModel.age
+
+            val pet = hashMapOf(
+                "petName" to petName,
+                "species" to species,
+                "breed" to breed,
+                "color" to color,
+                "age" to age
+            )
+
+            val userData = hashMapOf(
+                "pet" to pet,
+                "owner" to owner
+            )
+
+            db.collection("users").document(uid).set(userData)
+                .addOnSuccessListener {
+                    val completePhoneNumber = "+91$phoneNumber"
+                    PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        completePhoneNumber,
+                        60,
+                        TimeUnit.SECONDS,
+                        requireActivity(),
+                        callbacks
+                    )
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(
+                        requireContext(),
+                        "Failed to register: $e",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    resetViews()
+                }
+        }
+    }
+
+
     private fun checkDetails(): Boolean {
+        var isValid = true
 
-        if(nameET.text.isNullOrEmpty()) {
+        if (nameET.text.isNullOrEmpty()) {
             nameET.error = "Enter your name"
-            isAllRight = false
+            isValid = false
         }
 
-        if(phoneNumberET.text.isNullOrEmpty()) {
+        if (phoneNumberET.text.isNullOrEmpty()) {
             phoneNumberET.error = "Enter your phone number"
-            isAllRight = false
+            isValid = false
+        } else if (phoneNumberET.text.toString().length != 10) {
+            phoneNumberET.error = "Enter a valid phone number"
+            isValid = false
         }
 
-        if(phoneNumberET.text.toString().length!=10){
-            phoneNumberET.error="Enter a valid phone number"
-            isAllRight=false
-        }
-
-        if(cityET.text.isNullOrEmpty()) {
+        if (cityET.text.isNullOrEmpty()) {
             cityET.error = "Enter your city"
-            isAllRight = false
+            isValid = false
         }
 
-        if(stateET.text.isNullOrEmpty()) {
+        if (stateET.text.isNullOrEmpty()) {
             stateET.error = "Enter your state"
-            isAllRight = false
+            isValid = false
         }
-
-        if(pinCodeET.text.isNullOrEmpty()) {
+        if (pinCodeET.text.isNullOrEmpty()) {
             pinCodeET.error = "Enter your pin code"
-            isAllRight = false
+            isValid = false
         }
 
-        return isAllRight
+        return isValid
     }
 
     private fun checkForInternet(): Boolean {
@@ -248,13 +254,20 @@ class Register2 : Fragment() {
             else -> false
         }
     }
+
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         FirebaseAuth.getInstance().signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.nav_otp)
+                    whiteView.visibility=View.GONE
+                    loader.visibility=View.GONE
                 } else {
-                    Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Registration failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     resetViews()
                 }
             }
@@ -269,5 +282,4 @@ class Register2 : Fragment() {
         stateET.isEnabled = true
         pinCodeET.isEnabled = true
     }
-
 }

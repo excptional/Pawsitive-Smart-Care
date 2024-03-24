@@ -9,18 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import com.by.pawsitive.db.viewmodels.PetDataViewModel
 import com.by.pawsitive.R
-import com.by.pawsitive.db.viewmodels.AppViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import pl.droidsonroids.gif.GifImageView
-import java.util.UUID
 
 class Register1 : Fragment() {
     private lateinit var backBtn: ImageView
@@ -33,6 +28,8 @@ class Register1 : Fragment() {
     private lateinit var whiteView: View
     private lateinit var loader: GifImageView
 
+    private lateinit var petDataViewModel: PetDataViewModel
+
     private var isAllRight = true
 
     override fun onCreateView(
@@ -40,6 +37,8 @@ class Register1 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_register1, container, false)
+
+        petDataViewModel = ViewModelProvider(requireActivity()).get(PetDataViewModel::class.java)
 
 
         backBtn = view.findViewById(R.id.back_btn_register1)
@@ -107,87 +106,28 @@ class Register1 : Fragment() {
             }
         }
 
+
         nextBtn.setOnClickListener {
-            isAllRight = true
-            if (checkDetails()) {
-                whiteView.visibility = View.VISIBLE
-                loader.visibility = View.VISIBLE
-                if (checkForInternet()) {
-                    petNameET.isEnabled = false
-                    speciesET.isEnabled = false
-                    breedET.isEnabled = false
-                    colorET.isEnabled = false
-                    ageET.isEnabled = false
+            if (checkDetails() && checkForInternet()) {
+                petDataViewModel.petName = petNameET.text.toString()
+                petDataViewModel.species = speciesET.text.toString()
+                petDataViewModel.breed = breedET.text.toString()
+                petDataViewModel.color = colorET.text.toString()
+                petDataViewModel.age = ageET.text.toString()
 
-                    val uid = UUID.randomUUID().toString()
-
-                    val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
-                    with(sharedPref.edit()) {
-                        putString("uid", uid)
-                        apply()
-                    }
-
-                        val petName = petNameET.text.toString()
-                        val species = speciesET.text.toString()
-                        val breed = breedET.text.toString()
-                        val color = colorET.text.toString()
-                        val age = ageET.text.toString()
-
-                        val db = FirebaseFirestore.getInstance()
-
-                        val pet = hashMapOf(
-                            "petName" to petName,
-                            "species" to species,
-                            "breed" to breed,
-                            "color" to color,
-                            "age" to age
-                        )
-
-                        db.collection("users").document(uid).collection("pet")
-                            .add(pet)
-                            .addOnSuccessListener { documentReference ->
-                                val navController = view.findNavController()
-                                navController.navigate(R.id.register2)
-
-                                whiteView.visibility = View.GONE
-                                loader.visibility = View.GONE
-                                petNameET.isEnabled = true
-                                breedET.isEnabled = true
-                                speciesET.isEnabled = true
-                                colorET.isEnabled = true
-                                ageET.isEnabled = true
-                            }
-                            .addOnFailureListener { e ->
-                                Toast.makeText(requireContext(), "Failed to add pet: $e", Toast.LENGTH_SHORT).show()
-                                whiteView.visibility = View.GONE
-                                loader.visibility = View.GONE
-                                petNameET.isEnabled = true
-                                breedET.isEnabled = true
-                                speciesET.isEnabled = true
-                                colorET.isEnabled = true
-                                ageET.isEnabled = true
-                            }
-                    } else {
-                        Toast.makeText(requireContext(), "User UID not found", Toast.LENGTH_SHORT).show()
-                        whiteView.visibility = View.GONE
-                        loader.visibility = View.GONE
-                        petNameET.isEnabled = true
-                        breedET.isEnabled = true
-                        speciesET.isEnabled = true
-                        colorET.isEnabled = true
-                        ageET.isEnabled = true
-                    }
-                } else {
-                    whiteView.visibility = View.GONE
-                    loader.visibility = View.GONE
-                    petNameET.isEnabled = true
-                    breedET.isEnabled = true
-                    speciesET.isEnabled = true
-                    colorET.isEnabled = true
-                    ageET.isEnabled = true
-                    Toast.makeText(requireContext(), "Something went wrong!\nCheck your internet connection", Toast.LENGTH_SHORT).show()
+                val bundle = Bundle().apply {
+                    putString("petName", petDataViewModel.petName)
+                    putString("species", petDataViewModel.species)
+                    putString("breed", petDataViewModel.breed)
+                    putString("color", petDataViewModel.color)
+                    putString("age", petDataViewModel.age)
                 }
+
+                val navController = view.findNavController()
+                navController.navigate(R.id.register2,bundle)
             }
+        }
+
 
 
         return view

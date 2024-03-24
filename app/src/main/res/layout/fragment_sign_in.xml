@@ -1,14 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main_files.fragments.SignIn">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/topbar_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/pawsitive_png" />
+
+        <ImageView
+            android:id="@+id/back_btn_log_in"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="-3dp"
+            android:src="@drawable/arrow_black" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/topbar_sign_in"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_20sdp">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/ll_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:fontFamily="@font/roboto_black"
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_in_now"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_2sdp">
+
+                <TextView
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/text_color1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/don_t_have_an_account"
+                    />
+
+                <TextView
+                    android:id="@+id/register"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:textColor="@color/app_blue"
+                    android:text="@string/register"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/app_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/phone_number"
+                />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/phone_number_log_in"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@color/white"
+                android:hint="@string/type_your_phone_number"
+                android:inputType="phone"
+                android:textColorHint="@color/text_color2"
+                android:cursorVisible="true"
+                android:singleLine="true"
+                android:scrollbars="horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
+                android:padding="@dimen/_10sdp"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sign_in"
+            android:layout_marginTop="@dimen/_27sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38sdp"
+            android:background="@drawable/gradient_btn"
+            android:backgroundTint="@null"
+            android:text="@string/sign_in"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_below="@id/ll_sign_in"
+            />
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/whiteView_log_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A1FFFFFF"
+        android:visibility="gone" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loader_log_in"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:src="@drawable/loader" />
+
+</RelativeLayout>

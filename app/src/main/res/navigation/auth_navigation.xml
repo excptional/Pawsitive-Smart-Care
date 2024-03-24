@@ -11,13 +11,18 @@
         tools:layout="@layout/fragment_sign_in" />
 
     <fragment
-        android:id="@+id/nav_register"
-        android:name="com.by.pawsitive.main_files.fragments.Register"
-        tools:layout="@layout/fragment_register" />
-
-    <fragment
         android:id="@+id/nav_otp"
         android:name="com.by.pawsitive.main_files.fragments.OTPVerification"
         tools:layout="@layout/fragment_o_t_p_verification" />
+    <fragment
+        android:id="@+id/register1"
+        android:name="com.by.pawsitive.main_files.fragments.Register1"
+        android:label="Register1" />
+    <fragment
+        android:id="@+id/register2"
+        android:name="com.by.pawsitive.main_files.fragments.Register2"
+        android:label="fragment_register2"
+        tools:layout="@layout/fragment_register2" />
+
 
 </navigation>

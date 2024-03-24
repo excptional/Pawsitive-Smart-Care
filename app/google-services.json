@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "724526181609",
-    "project_id": "pawsitive-smart-care",
-    "storage_bucket": "pawsitive-smart-care.appspot.com"
+    "project_number": "423467538862",
+    "project_id": "pawsitive-b9ea9",
+    "storage_bucket": "pawsitive-b9ea9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:724526181609:android:7f638bf4506821d9101478",
+        "mobilesdk_app_id": "1:423467538862:android:a0be9cb747bb4718bdd03f",
         "android_client_info": {
           "package_name": "com.by.pawsitive"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBjqOoId4ryzI6kmTWY2Xb7YD8-oxclrR8"
+          "current_key": "AIzaSyCTfvN83ssQJUod98xW-Re-ZE5OAFEIQl4"
         }
       ],
       "services": {

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main_files.fragments.Register2">
+
+    <RelativeLayout
+        android:id="@+id/topbar_register2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/pawsitive_png" />
+
+        <ImageView
+            android:id="@+id/back_btn_register2"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="-3dp"
+            android:src="@drawable/arrow_black" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/topbar_register2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_20sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:fontFamily="@font/roboto_black"
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_owner_details"
+                />
+
+            <TextView
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/text_color1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:text="@string/enter_details_properly"
+                />
+
+            <TextView
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/name"
+                />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/name_register2"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@color/white"
+                android:hint="@string/enter_your_name"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:textColorHint="#D1D0D0"
+                android:cursorVisible="true"
+                android:singleLine="true"
+                android:scrollbars="horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="@dimen/_10sdp"
+                />
+
+            <TextView
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/phone_number"
+                />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/phone_number_register2"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@color/white"
+                android:inputType="number"
+                android:hint="@string/enter_your_phone_number"
+                android:imeOptions="actionNext"
+                android:textColorHint="#D1D0D0"
+                android:singleLine="true"
+                android:scrollbars="horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="@dimen/_10sdp"
+                />
+
+            <TextView
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/city"
+                />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/city_register2"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@color/white"
+                android:hint="@string/enter_your_city"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textColorHint="#D1D0D0"
+                android:fontFamily="@font/roboto_medium"
+                android:singleLine="true"
+                android:scrollbars="horizontal"
+                android:padding="@dimen/_10sdp"
+                />
+
+            <TextView
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="State"
+                />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/state_register2"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@color/white"
+                android:hint="@string/enter_your_state"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:textColorHint="#D1D0D0"
+                android:singleLine="true"
+                android:scrollbars="horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="@dimen/_10sdp"
+                />
+
+            <TextView
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/text_color1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Pin Code"
+                />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/pin_code_register2"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/text_color2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@color/white"
+                android:hint="@string/enter_your_pin_code"
+                android:imeOptions="actionDone"
+                android:textColorHint="#D1D0D0"
+                android:singleLine="true"
+                android:scrollbars="horizontal"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="@dimen/_10sdp"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_register_register2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38sdp"
+            android:background="@drawable/gradient_btn"
+            android:backgroundTint="@null"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/whiteView_register2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A1FFFFFF"
+        android:visibility="gone" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loader_register2"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:src="@drawable/loader" />
+
+</RelativeLayout>

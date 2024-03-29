@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="28dp"
         android:layout_margin="@dimen/_10sdp"
         android:src="@drawable/pawsitive_png"/>
 
@@ -48,7 +48,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_margin="@dimen/_10sdp"
                 android:layout_gravity="center"
-                android:src="@drawable/user2"
+                android:src="@drawable/user_profile"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="@dimen/_2sdp" />
 

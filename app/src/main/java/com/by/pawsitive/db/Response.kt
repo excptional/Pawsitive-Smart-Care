@@ -1,6 +1,6 @@
 package com.by.pawsitive.db
-
-sealed class Response<T>(val errorMassage: String? = null){
-    class Success<T>(): Response<T>()
-    class Failure<T>(errorMassage: String): Response<T>(errorMassage = errorMassage)
+sealed class Response<out T> {
+    data class Success<out T>(val data: String) : Response<T>()
+    data class Failure(val message: String) : Response<Nothing>()
+    object Loading : Response<Nothing>()
 }

@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.by.pawsitive.R
 
-class ConnectUs : Fragment() {
+class ContactUs : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_connect_us, container, false)
+        val view = inflater.inflate(R.layout.fragment_contact_us, container, false)
 
         return view
     }

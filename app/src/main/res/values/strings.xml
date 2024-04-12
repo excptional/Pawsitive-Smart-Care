@@ -2,4 +2,37 @@
     <string name="app_name">Pawsitive</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in_now">Sign In Now</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="type_your_phone_number">Type your phone number</string>
+    <string name="create_your_account_now">Create your account now</string>
+    <string name="sent_to">Sent to</string>
+    <string name="_91_8697896178">+91 8697896178</string>
+    <string name="we_sent_you_a_code_to_verify_nyour_phone_number">We sent you a code to verify\nyour phone number</string>
+    <string name="submit">SUBMIT</string>
+    <string name="sign_in">Sign In</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_pet_details">Enter Pet Details</string>
+    <string name="enter_details_properly">Enter details properly</string>
+    <string name="pet_name">Pet Name</string>
+    <string name="enter_yout_pet_s_name">Enter yout pet\'s name</string>
+    <string name="breed">Breed</string>
+    <string name="species">Species</string>
+    <string name="age">Age</string>
+    <string name="enter_your_pet_s_age">Enter your pet\'s age</string>
+    <string name="enter_your_pet_s_breed">Enter your pet\'s breed</string>
+    <string name="next">Next</string>
+    <string name="enter_owner_details">Enter Owner Details</string>
+    <string name="name">Name</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="enter_your_pin_code">Enter your pin code</string>
+    <string name="enter_your_state">Enter your state</string>
+    <string name="enter_your_city">Enter your city</string>
+    <string name="city">City</string>
+    <string name="enter_your_pet_s_species">Enter your pet\'s species</string>
+    <string name="color">Color</string>
+    <string name="enter_your_pet_s_color">Enter your pet\'s color</string>
+    <string name="state">State</string>
 </resources>

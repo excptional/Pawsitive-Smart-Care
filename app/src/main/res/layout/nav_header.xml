@@ -19,6 +19,7 @@
         android:background="#EAEAED"/>
 
     <RelativeLayout
+        android:id="@+id/view_profile"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_55sdp"
         android:layout_margin="@dimen/_10sdp"
@@ -37,7 +38,6 @@
             android:src="@drawable/expand" />
 
         <LinearLayout
-            android:id="@+id/viewProfile"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal">

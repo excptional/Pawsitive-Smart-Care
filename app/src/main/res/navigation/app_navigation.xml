@@ -60,5 +60,10 @@
         android:name="com.by.pawsitive.main_files.fragments.FutureScope"
         tools:layout="@layout/fragment_future_scope" />
 
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.by.pawsitive.main_files.fragments.Profile"
+        tools:layout="@layout/fragment_profile" />
+
 
 </navigation>

@@ -7,10 +7,9 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -18,13 +17,15 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/pawsitive_app_icon"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/pawsitive_app_icon"
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.Pawsitive"
-        tools:targetApi="31"
-        android:networkSecurityConfig="@xml/network_security_config"
-        android:usesCleartextTraffic="true" >
-
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".main_files.activities.SecondaryActivity"
+            android:exported="false" />
         <activity
             android:name=".main_files.activities.Authentication"
             android:exported="false" />

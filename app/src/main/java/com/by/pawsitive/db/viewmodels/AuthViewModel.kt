@@ -20,6 +20,13 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val _registerResponse = MutableStateFlow<Response<User>>(Response.Loading)
     val registerResponse: StateFlow<Response<User>> get() = _registerResponse
 
+    private val _isLoggedIn = MutableStateFlow(false)
+    val isLoggedIn: StateFlow<Boolean> get() = _isLoggedIn
+
+    private val _currentUserUid = MutableStateFlow<String?>(null)
+    val currentUserUid: StateFlow<String?> get() = _currentUserUid
+
+
     fun signIn(phone: String, password: String) {
         viewModelScope.launch {
             authRepository.login(phone, password)
@@ -46,6 +53,14 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             authRepository.logOut()
         }
+    }
+
+    fun checkLoggedInStatus() {
+        _isLoggedIn.value = authRepository.isLoggedIn()
+    }
+
+    fun fetchCurrentUserUid() {
+        _currentUserUid.value = authRepository.getCurrentUserUid()
     }
 
 }

@@ -9,9 +9,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -19,6 +22,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.by.pawsitive.R
 import com.by.pawsitive.databinding.ActivityMainBinding
+import com.by.pawsitive.db.viewmodels.AuthViewModel
 import com.google.android.material.navigation.NavigationView
 import de.hdodenhof.circleimageview.CircleImageView
 import javax.net.ssl.SSLSessionBindingEvent
@@ -27,11 +31,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-//    private var dbViewModel: DBViewModel? = null
-//    private var appViewModel: AppViewModel? = null
     private lateinit var name: TextView
     private lateinit var img: CircleImageView
-    private lateinit var viewProfile: LinearLayout
+    private lateinit var viewProfile: RelativeLayout
+    private val authViewModel: AuthViewModel by viewModels()
+
     @SuppressLint("ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,16 +50,13 @@ class MainActivity : AppCompatActivity() {
         binding.appBar.toolbar.title = ""
         setSupportActionBar(binding.appBar.toolbar)
 
-//        appViewModel = ViewModelProvider(this)[AppViewModel::class.java]
-//        dbViewModel = ViewModelProvider(this)[DBViewModel::class.java]
-
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navViewNormalUser
-        val navController = findNavController(R.id.nav_host_fragment_content)
+        val navController = findNavController(R.id.nav_host_main)
 
         img = navView.getHeaderView(0).findViewById(R.id.profileImage)
         name = navView.getHeaderView(0).findViewById(R.id.profileName)
-        viewProfile = navView.getHeaderView(0).findViewById(R.id.viewProfile)
+        viewProfile = navView.getHeaderView(0).findViewById(R.id.view_profile)
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -75,20 +76,27 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-//        appViewModel!!.userdata.observe(this) { user ->
-//            if (user != null) {
-//                getDataFromDatabase(user)
-//            }
-//        }
+//        navController.navigate(R.id.nav_home)
 
-//        viewProfile.setOnClickListener {
-//            startActivity(Intent(this, UserProfileActivity::class.java))
-//        }
+        authViewModel.checkLoggedInStatus()
+
+        lifecycleScope.launchWhenStarted {
+            authViewModel.isLoggedIn.collect { isLoggedIn ->
+                if (!isLoggedIn) {
+                    startActivity(Intent(this@MainActivity, Authentication::class.java))
+                    finish()
+                }
+            }
+        }
+
+        viewProfile.setOnClickListener {
+            startActivity(Intent(this, SecondaryActivity::class.java))
+        }
 
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content)
+        val navController = findNavController(R.id.nav_host_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 

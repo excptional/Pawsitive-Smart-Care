@@ -18,11 +18,6 @@ class AuthRepository {
     private val firebaseDB: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    fun logOut(): Flow<Unit> = flow {
-        firebaseAuth.signOut()
-        emit(Unit)
-    }
-
     fun login(phone: String, password: String): Flow<Response<User>> = flow {
 
         try {
@@ -66,6 +61,20 @@ class AuthRepository {
             emit(Response.Failure(getErrorMessage(e)))
         }
     }
+
+    fun getCurrentUserUid(): String? {
+        return firebaseAuth.currentUser?.uid
+    }
+
+    fun isLoggedIn(): Boolean {
+        return firebaseAuth.currentUser != null
+    }
+
+    fun logOut(): Flow<Unit> = flow {
+        firebaseAuth.signOut()
+        emit(Unit)
+    }
+
 
     private fun getErrorMessage(e: Exception): String {
         val colonIndex = e.toString().indexOf(":")

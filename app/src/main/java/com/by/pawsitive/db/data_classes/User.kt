@@ -1,14 +1,14 @@
 package com.by.pawsitive.db.data_classes
 
 data class User(
-    val UID: String? = null,
-    val OwnerName: String? = null,
-    val OwnerImage: String? = null,
-    val PetName: String? = null,
-    val PetImage: String? = null,
-    val PetAge: String? = null,
-    val PetGender: String? = null,
-    val Species: String? = null,
-    val Email: String? = null,
-    val Password: String? = null
+    val uid: String? = null,
+    val ownerName: String? = null,
+    val ownerImage: String? = null,
+    val petName: String? = null,
+    val petImage: String? = null,
+    val petAge: String? = null,
+    val petGender: String? = null,
+    val species: String? = null,
+    val phone: String? = null,
+    val password: String? = null
 )
